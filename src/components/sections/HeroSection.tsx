@@ -1,13 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
-interface HeroSectionProps {
-  onLogin: () => void;
-}
-
-export function HeroSection({ onLogin }: HeroSectionProps) {
-  const navigate = useNavigate(); // Initialize useNavigate
+export function HeroSection() {
+  const navigate = useNavigate();
 
   return (
     <div className="relative py-20 overflow-hidden bg-white">
