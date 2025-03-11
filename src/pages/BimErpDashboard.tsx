@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
 
-const BimErpDashboard = () => {
+export default function BimErpDashboard() {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">BIM ERP Operations Dashboard</h1>
-      <p>Welcome to the BIM ERP Operations Dashboard. This dashboard is tailored to your demo account type and provides access to construction marketplace, CRM, and structural awareness modules.</p>
+    <div style={{ padding: '1rem' }}>
+      <h1>BIM ERP Dashboard</h1>
+      <p>
+        Welcome to the integrated BIM ERP platform. This dashboard provides an overview of construction projects, marketplace activity, CRM insights, and structural health monitoring.
+      </p>
+      {/* Future enhancements: charts, notifications, key metrics */}
     </div>
   );
-};
-
-export default BimErpDashboard;
+}

@@ -1,3 +1,4 @@
+
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -11,9 +12,12 @@ import Login from "./pages/Login"; // Import the Login component
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import BimErpDashboard from './pages/BimErpDashboard';
+
 import { HeroSection } from './components/sections/HeroSection';
 
-const queryClient = new QueryClient();
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,5 +52,6 @@ const App = () => {
     </QueryClientProvider>
   );
 };
+
 
 export default App;
