@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/ai-empowered-visibility-61/" : "/",
+  base: command === "build" ? "/struct-erp/" : "/",
   server: {
     host: "::",
     port: 8080,

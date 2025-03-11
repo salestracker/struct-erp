@@ -1,11 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 interface HeroSectionProps {
   onLogin: () => void;
 }
 
 export function HeroSection({ onLogin }: HeroSectionProps) {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
     <div className="relative py-20 overflow-hidden bg-white">
       <div className="container mx-auto px-4">
@@ -18,10 +21,10 @@ export function HeroSection({ onLogin }: HeroSectionProps) {
               Streamline your operations, boost efficiency, and make data-driven decisions with our intelligent ERP solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="gap-2" onClick={onLogin}>
+              <Button size="lg" className="gap-2" onClick={() => navigate("/login")}>
                 Get Started <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" onClick={onLogin}>
+              <Button size="lg" variant="outline" onClick={() => navigate("/login")}>
                 Book a Demo
               </Button>
             </div>

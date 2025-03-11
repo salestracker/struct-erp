@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Marketplace from "./pages/Marketplace";
 import CRM from "./pages/CRM";
 import StructuralAwareness from "./pages/StructuralAwareness";
+import Login from "./pages/Login"; // Import the Login component
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/crm" element={<CRM />} />
         <Route path="/structural-awareness" element={<StructuralAwareness />} />
+        <Route path="/login" element={<Login />} /> {/* Add route for login page */}
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
