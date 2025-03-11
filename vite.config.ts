@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/ai-empowered-visibility-61/" : "/",
+  base: command === "build" ? "/struct-erp/" : "/",
   server: {
     host: "::",
     port: 8080,
@@ -20,7 +20,13 @@ export default defineConfig(({ command }) => ({
     },
   },
   build: {
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'lucide-react']
+        }
+      },
       external: [],
     },
   },

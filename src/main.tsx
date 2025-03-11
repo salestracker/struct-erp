@@ -1,13 +1,13 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App.tsx';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { HashRouter } from 'react-router-dom';
 import './index.css';
 
-// Use environment variable to determine the base
-const base = import.meta.env.VITE_BASENAME || "/"; // environment variable set up
-
-createRoot(document.getElementById("root")!).render(
-  <BrowserRouter basename={base}>
-    <App />
-  </BrowserRouter>
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <HashRouter basename={import.meta.env.BASE_URL}>
+      <App />
+      </HashRouter>
+  </React.StrictMode>
 );
