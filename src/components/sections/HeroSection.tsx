@@ -12,7 +12,7 @@ export function HeroSection({ onLogin }: HeroSectionProps) {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              AI-Powered ERP for Modern E-commerce
+              BIM-Integrated ERP: Revolutionizing Construction Operations
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               Streamline your operations, boost efficiency, and make data-driven decisions with our intelligent ERP solution.
@@ -29,7 +29,7 @@ export function HeroSection({ onLogin }: HeroSectionProps) {
           <div className="flex-1">
             <img
               src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-              alt="AI ERP Dashboard"
+              alt="BIM ERP Dashboard"
               className="rounded-lg shadow-2xl"
               width={600}
               height={400}
