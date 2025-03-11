@@ -4,10 +4,13 @@ import App from './App';
 import { HashRouter } from 'react-router-dom';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <HashRouter basename={import.meta.env.BASE_URL}>
-      <App />
-      </HashRouter>
-  </React.StrictMode>
+
+// Use environment variable to determine the base
+const base = "/struct-erp/"; // environment variable set up
+
+createRoot(document.getElementById("root")!).render(
+  <BrowserRouter basename={base}>
+    <App />
+  </BrowserRouter>
+
 );

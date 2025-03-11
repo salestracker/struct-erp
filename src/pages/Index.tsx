@@ -9,6 +9,7 @@ import { SettingsSection } from "@/components/sections/SettingsSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Index = () => {
   const [isOnline] = useState(navigator.onLine);
@@ -16,6 +17,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -52,7 +54,7 @@ const Index = () => {
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-white">
-        <HeroSection onLogin={handleLogin} />
+        <HeroSection onLogin={() => navigate("/login")} /> {/* Update onLogin to navigate to /login */}
         <FeaturesSection />
       </div>
     );
