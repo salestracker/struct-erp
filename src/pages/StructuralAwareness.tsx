@@ -11,7 +11,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { PlusCircle, Search, Filter, MoreHorizontal, AlertTriangle, Activity, Building, Download, FileText } from "lucide-react";
+import { PlusCircle, Search, Filter, MoreHorizontal, AlertTriangle, Activity, Building, Download, FileText, FileUp } from "lucide-react";
+import { BimModelUploader } from "@/components/bim/BimModelUploader";
+import { BimModelViewer } from "@/components/bim/BimModelViewer";
 
 // Mock data
 const dummyStructures = [
@@ -98,6 +100,8 @@ const StructuralAwareness = () => {
 
   const canViewStructures = hasPermission(PERMISSIONS.VIEW_STRUCTURES);
   const canViewSensorData = hasPermission(PERMISSIONS.VIEW_SENSOR_DATA);
+  const canViewBimModels = hasPermission(PERMISSIONS.VIEW_BIM_MODELS);
+  const canUploadBimModel = hasPermission(PERMISSIONS.UPLOAD_BIM_MODEL);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -129,6 +133,7 @@ const StructuralAwareness = () => {
           <TabsTrigger value="structures">Structures</TabsTrigger>
           <TabsTrigger value="sensors">Sensors</TabsTrigger>
           <TabsTrigger value="alerts">Alerts</TabsTrigger>
+          <TabsTrigger value="bim">BIM Integration</TabsTrigger>
         </TabsList>
         
         <TabsContent value="dashboard" className="space-y-4">
@@ -351,6 +356,144 @@ const StructuralAwareness = () => {
             <Card>
               <CardContent className="p-6 text-center">
                 <p className="text-muted-foreground">You don't have permission to view alerts.</p>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+        
+        <TabsContent value="bim" className="space-y-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">BIM Model Integration</h2>
+            <div className="flex gap-2">
+              {canUploadBimModel && (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="flex items-center gap-2">
+                      <FileUp className="h-4 w-4" />
+                      Upload BIM Model
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl">
+                    <DialogHeader>
+                      <DialogTitle>Upload BIM Model</DialogTitle>
+                      <DialogDescription>
+                        Upload and integrate BIM/CAD models to enable structural analysis and compliance monitoring
+                      </DialogDescription>
+                    </DialogHeader>
+                    <BimModelUploader 
+                      onModelUploaded={(modelData) => {
+                        console.log("Model uploaded:", modelData);
+                        // In a real app, we would update the state with the new model
+                      }}
+                    />
+                  </DialogContent>
+                </Dialog>
+              )}
+            </div>
+          </div>
+          
+          {canViewBimModels ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {/* Mock BIM models - in a real app, these would come from an API */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Downtown Office Tower - BIM Model</CardTitle>
+                    <CardDescription>IFC format • Uploaded on March 15, 2025</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video bg-gray-100 rounded-md flex items-center justify-center mb-4">
+                      <img 
+                        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80" 
+                        alt="BIM Model Preview"
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-y-2 text-sm">
+                      <div>
+                        <span className="font-medium">Structure ID:</span> STR-1001
+                      </div>
+                      <div>
+                        <span className="font-medium">File Size:</span> 24.5 MB
+                      </div>
+                      <div>
+                        <span className="font-medium">Dimensions:</span> 120ft × 85ft × 45ft
+                      </div>
+                      <div>
+                        <span className="font-medium">Compliance:</span> IBC-2021, ASHRAE 90.1
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button variant="outline" size="sm" className="gap-1">
+                      <FileText className="h-4 w-4" />
+                      View Details
+                    </Button>
+                    <Button variant="outline" size="sm" className="gap-1">
+                      <Download className="h-4 w-4" />
+                      Download
+                    </Button>
+                  </CardFooter>
+                </Card>
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Suburban Housing Complex - BIM Model</CardTitle>
+                    <CardDescription>Revit format • Uploaded on February 28, 2025</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video bg-gray-100 rounded-md flex items-center justify-center mb-4">
+                      <img 
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1153&q=80" 
+                        alt="BIM Model Preview"
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-y-2 text-sm">
+                      <div>
+                        <span className="font-medium">Structure ID:</span> STR-1002
+                      </div>
+                      <div>
+                        <span className="font-medium">File Size:</span> 18.2 MB
+                      </div>
+                      <div>
+                        <span className="font-medium">Dimensions:</span> 200ft × 150ft × 30ft
+                      </div>
+                      <div>
+                        <span className="font-medium">Compliance:</span> IBC-2021, ADA
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button variant="outline" size="sm" className="gap-1">
+                      <FileText className="h-4 w-4" />
+                      View Details
+                    </Button>
+                    <Button variant="outline" size="sm" className="gap-1">
+                      <Download className="h-4 w-4" />
+                      Download
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
+              
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold mb-4">Real-Time Structural Health Monitoring</h2>
+                <p className="text-muted-foreground mb-6">
+                  View real-time sensor data overlaid on BIM models to quickly identify areas of concern
+                </p>
+                
+                <BimModelViewer 
+                  structureId="STR-1001"
+                  structureName="Downtown Office Tower"
+                  previewUrl="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80"
+                />
+              </div>
+            </>
+          ) : (
+            <Card>
+              <CardContent className="p-6 text-center">
+                <p className="text-muted-foreground">You don't have permission to view BIM models.</p>
               </CardContent>
             </Card>
           )}
